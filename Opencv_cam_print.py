@@ -11,6 +11,7 @@ capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
 writer = None
 
 while cv2.waitKey(33) < 0:
+    print(cv2.waitKey())
     ret, frame = capture.read()
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     cv2.imshow("VideoFrame", frame)
@@ -22,6 +23,10 @@ while cv2.waitKey(33) < 0:
     # 비디오 저장
     if writer is not None:
         writer.write(frame)
+
+    #비디오 종료
+    if cv2.waitKey(1) == ord('q'):
+        break
 
 capture.release()
 cv2.destroyAllWindows()
